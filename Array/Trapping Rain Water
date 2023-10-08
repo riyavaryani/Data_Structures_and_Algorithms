@@ -1,0 +1,43 @@
+class Solution {
+public:
+    int trap(vector<int>& height) {
+        // int ans=0;
+        // int n=height.size(); vector<int> lmax(n,1), rmax(n,1);
+        // for(int i=0;i<n;i++) {
+        //     if(i==0) lmax[i] = height[i];
+        //     else {
+        //         lmax[i] = max(lmax[i-1], height[i]);
+        //     }
+        // }
+        // for(int i=n-1;i>=0;i--) {
+        //     if(i==n-1) rmax[i] = height[i];
+        //     else {
+        //         rmax[i] = max(rmax[i+1], height[i]);
+        //     }
+        // }
+        // for(int i=1;i<n-1;i++){
+        //     ans = ans + min(lmax[i], rmax[i]) - height[i];
+        // }
+        // return ans;
+
+        int n=height.size();
+        int lmax = height[0], rmax=height[n-1];
+        int l=1, r=n-2, ans=0;
+        while(l<=r) {
+            if(lmax<rmax) {
+                if(height[l]>lmax) lmax=height[l];
+                else {
+                    ans = ans + lmax - height[l];
+                    l++;
+                }
+            } else {
+                if(height[r]>rmax) rmax = height[r];
+                else {
+                    ans = ans + rmax - height[r];
+                    r--;
+                }
+            }
+        }
+        return ans;
+    }
+};
