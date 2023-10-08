@@ -1,0 +1,20 @@
+class Solution {
+public:
+    string reverseWords(string s) {
+        int n=s.size(); bool r = false; string ans = ""; int a=0;
+        for(int i=n-1;i>=0;i--) {
+            if(s[i]!=' ') {
+                r = true;
+                a++;
+            }
+            if(i == 0 || s[i-1] == ' ')  {
+                if(r == true) {
+                    if(ans != "") ans+=" ";
+                    ans+=s.substr(i,a);
+                    a=0; r = false;
+                }
+            }
+        }
+        return ans;
+    }
+};
