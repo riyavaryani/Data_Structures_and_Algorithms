@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        int w=haystack.size(), e= needle.size();
+        for(int i=0;i<w;i++) {
+            if(haystack[i] == needle[0]) {
+                int r=e-1, m=w-i-1;
+                int j=1; int ans=0, y=i;
+                while(r>0 && m>0) {
+                    if(haystack[++y] == needle[j++]) ans++;
+                    else break;
+                    r--; m--;
+                }
+                if(ans == e-1) return i;
+            }
+        }
+        return -1;
+    }
+};
